@@ -2,7 +2,7 @@ const mongoose= require('mongoose')
 
 const precioSchema =new mongoose.Schema({
     precio : Number,
-    services: {
+    service: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Service',
     },
@@ -24,4 +24,4 @@ precioSchema.set('toJSON',{
 
 const Precio = mongoose.model('Precio',precioSchema)
 
-module.exports =Precio
+module.exports = Precio

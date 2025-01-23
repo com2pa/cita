@@ -5,18 +5,18 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
+const { MONGO_URL } = require('./config');
 
 
 const usersRouter = require('./controllers/users');
 const refresRouter = require('./controllers/refres')
 const loginRouter = require('./controllers/login');
 const logoutRouter = require('./controllers/logout');
+const serviceRouter = require('./controllers/services');
 const { usertExtractor } = require('./middleware/auth');
-
-// const patientRouter = require('./controllers/patient');
-// const nurseRouter = require('./controllers/nurse');
-// const reportRouter = require('./controllers/report');
-const { MONGO_URL } = require('./config');
+const precioRouter = require('./controllers/precio');
+const citaRouter = require('./controllers/cita');
+const calendarioRouter = require('./controllers/calendario');
 
 // const morgan=require('morgan')
 
@@ -39,6 +39,12 @@ app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/logout', logoutRouter);
 app.use('/api/refres', usertExtractor, refresRouter)
+app.use('/api/service',  serviceRouter)
+app.use('/api/price', precioRouter)
+// CLIENTE
+app.use('/api/customer',citaRouter)
+// calendario
+app.use('/api/calendario',calendarioRouter)
 
 
 

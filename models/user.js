@@ -5,10 +5,11 @@ const userSchema =new mongoose.Schema({
     name: String,
     phone: Number,        
     email:String,        
-    password:String,        
+    password:String,          
     role:{
         type:String,
-        enum:['empleado','cliente','admin']
+        enum:['empleado','cliente','admin'],
+        default:'empleado'
     },
     fecha:{
         type:Date,
@@ -21,7 +22,16 @@ const userSchema =new mongoose.Schema({
     Services:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Service',
-    }]
+    }],
+    precio:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Precio',
+    }],
+    PermissionStatus:{
+        type: String,
+        enum:['active','inactive'],
+        default:'inactive'
+    }
 })
 
 // funcion para transformar datos cuando se solicite 

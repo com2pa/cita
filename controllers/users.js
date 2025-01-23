@@ -6,6 +6,13 @@ const jwt = require('jsonwebtoken')
 const nodemailer = require("nodemailer");
 const { PAGE_URL } = require('../config');
 
+// mostrando todos los usuarios
+usersRouter.get('/',async(request,response)=>{
+    const users = await User.find({});
+    console.log('usuarios', users)
+    response.json(users);
+})
+
 
 usersRouter.post('/', async(request,response)=>{
    const {name,
@@ -83,6 +90,9 @@ usersRouter.patch('/:id/:token', async(request,response)=>{
         await User.findByIdAndUpdate(id, {verificacion: true})
         return response.sendStatus(200)
 
+        
+
+
     } catch (error) {
     //    encontrar el email del usuario
         const id = request.params.id;
@@ -126,5 +136,18 @@ usersRouter.patch('/:id/:token', async(request,response)=>{
 
  
 
+});
+
+// borrado usuario
+usersRouter.delete('/:id', async(request,response)=>{
+    try {
+        const user = await User.findByIdAndDelete(request.params.id)
+        if(!user){
+            return response.status(404).json({error:'El usuario no existe'})
+        }
+        return response.status(200).json({message: 'Usuario eliminado correctamente'})
+    } catch (error) {
+        return response.status(500).json('Hubo un error al intentar eliminar el usuario')
+    }
 });
 module.exports = usersRouter;

@@ -3,17 +3,16 @@ const mongoose= require('mongoose');
 // modelo las base datos
 // documents 
 const serviceSchema = new mongoose.Schema({
-    NameService:String,    
-    price:Number,    
+    NameService:String, 
     user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
-    cliente:{
+    precio:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Patient',
+        ref: 'Precio',
     }
-
+  
 
     
     

@@ -1,7 +1,11 @@
-const app = require('./app');
 const http = require('http');
+const app = require('./app');
 
+
+// Crear el servidor HTTP
 const server = http.createServer(app);
-server.listen(3000,()=>{
-    console.log('El servidor esta corriendo en el  puerto 3000')
-})
+
+// Iniciar el servidor HTTP
+server.listen(3000, () => {
+  console.log('El servidor está corriendo en el puerto 3000');
+});
